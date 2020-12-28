@@ -46,6 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapWxRoutes();
         //
     }
 
@@ -76,5 +77,19 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapWxRoutes()
+    {
+        Route::prefix('wx')
+            ->namespace($this->namespace. '\Wx')
+            ->group(base_path('routes/wx.php'));
     }
 }
